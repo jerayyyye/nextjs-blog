@@ -1,0 +1,72 @@
+$breakPoint: 1000px;
+
+.wrapper {
+  display: grid;
+  text-align: center;
+  grid-template-columns: 1fr ;
+}
+  
+.salarychart {
+  display: block;
+  padding: 2rem 2rem;
+  width: 100%;
+
+  
+  @media screen and (min-width: $breakPoint) {
+    flex:1;
+  }
+}
+
+.chart {
+  max-width: 100%;
+  width: 100%;
+
+  @media screen and (min-width: $breakPoint) {
+    max-width: 80%;
+  }
+}
+
+  
+.cardWrapper {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+
+  justify-content: space-evenly;
+  max-width: 100%;
+  width: 100%;
+
+  @media screen and (min-width: $breakPoint) {
+    flex-direction: column;
+    max-width: 80%;
+  }
+}
+
+
+.card {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: $breakPoint) {
+    padding: 0.5rem;
+  }
+  
+}
+
+.cardTitle p {
+  font-size: 1.8rem
+}
+
+.cardValue p {
+  font-size: 1.2rem
+}
+
+  
+
+
+
+  
+ 
