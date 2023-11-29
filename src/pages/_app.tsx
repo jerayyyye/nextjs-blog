@@ -6,12 +6,13 @@ import darkTheme from "@/Theme/darkTheme";
 import lightTheme from "@/Theme/lightTheme";
 import Header from "@/components/Header";
 import Layout from "@/components/Layout";
+import { AppProps } from 'next/app';
 
 const ColorModeContext = React.createContext({
   toggleColorMode: () => {},
 });
 
-const App = ({ Component, pageProps: { session, ...pageProps } }) => {
+const App: React.FC<AppProps> = ({ Component, pageProps: { session, ...pageProps } }) => {
   const [mode, setMode] = React.useState<"light" | "dark">("light");
   const colorMode = React.useMemo(
     () => ({
@@ -19,7 +20,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
         setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
       },
     }),
-    []
+    [] 
   );
 
   const darkThemeChosen = React.useMemo(
@@ -27,15 +28,16 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
       createTheme({
         ...darkTheme,
       }),
-    [mode]
+    [] 
   );
   const lightThemeChosen = React.useMemo(
     () =>
       createTheme({
         ...lightTheme,
       }),
-    [mode]
+    [] 
   );
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider
@@ -52,4 +54,5 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
     </ColorModeContext.Provider>
   );
 };
+
 export default App;

@@ -84,7 +84,7 @@ const AnalyticsComp = () => {
           <Typography fontSize={"h6"} color={"lightslategrey"}>
             Pay practices across gov
           </Typography>
-          <DataChart type={"line"} data={chartData} />
+          <DataChart data={chartData} />
         </div>
         <div className={scss.cardWrapper}>
           <Card className={scss.card} variant={"outlined"}>
@@ -104,3 +104,4 @@ const AnalyticsComp = () => {
 };
 
 export default AnalyticsComp;
+

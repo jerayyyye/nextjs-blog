@@ -43,7 +43,7 @@ const About = () => {
                 )}
               </li>
               <li>
-                Submit your agency's pay practices for your tech workforce.{" "}
+                Submit your agency&apos;s pay practices for your tech workforce. Your agency&apos;s submission will be kept anonymous.{" "}
                 {session && isSalaryFormSubmitted ? (
                   <CheckIcon
                     fontSize="small"
@@ -54,7 +54,7 @@ const About = () => {
                 )}
               </li>
               <li>
-                View our dashboard to see where your agency's practices stand.{" "}
+                View our dashboard to see where your agency&apos;s practices stand.{" "}
                 {isSalaryFormSubmitted && session && <AnalyticsComp />}
               </li>
             </ul>

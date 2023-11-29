@@ -9,15 +9,15 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react"; //Imports authentication-related functions and hooks from the next-auth/react package. 
 import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { useMediaQuery } from "@mui/material";
 
 export type HeaderProps = {
   ColorModeContext: React.Context<{ toggleColorMode: () => void }>;
-};
+}; //defines a TypeScript type HeaderProps representing the props expected by the Header component.
 
-const Header = (props: HeaderProps) => {
+const Header = (props: HeaderProps) => { //conditionally render components based on the screen size or media queries.
   const { ColorModeContext } = props;
   const { data: session } = useSession();
   const userProfileImg = session?.user?.image as string;
@@ -26,7 +26,7 @@ const Header = (props: HeaderProps) => {
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
-  );
+  ); //handles user authentication, displays a navigation bar, theme toggle
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -42,7 +42,7 @@ const Header = (props: HeaderProps) => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-  };
+  }; //destructure color mode  prop, retrieve the user session using useSession, get the user's profile image URL, and initialize state variables for anchor elements used in menus
 
   const tabletCheck = useMediaQuery("(min-width: 768px)");
 
@@ -66,7 +66,7 @@ const Header = (props: HeaderProps) => {
           </Box>
         )}
         <ThemeToggleButton ColorModeContext={ColorModeContext} />
-        <Tooltip title="Sign out">
+        <Tooltip title="Sign in / Sign out">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <Avatar alt={session?.user?.name as string} src={userProfileImg} />
           </IconButton>

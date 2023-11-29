@@ -3,6 +3,9 @@ import Cookies from "js-cookie";
 import supabase from "@/config/supabaseClient";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import Tooltip from "@mui/material/Tooltip";
+import InfoIcon from "@mui/icons-material/Info";
+
 import {
   Table,
   TableBody,
@@ -48,9 +51,9 @@ const SalaryForm = () => {
   const [isConfirmationOpen, setConfirmationOpen] = useState(false);
   const [isSubmittedDialogOpen, setSubmittedDialogOpen] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    
+
     if (formData.length < 6) {
       setFormError("Please fill in at least 6 rows with all fields correctly");
       return;
@@ -60,7 +63,7 @@ const SalaryForm = () => {
   };
 
   // Function to handle form submission confirmation
-  const handleConfirmationClose = (confirmed) => {
+  const handleConfirmationClose = (confirmed: any) => {
     setConfirmationOpen(false);
 
     if (confirmed) {
@@ -84,14 +87,6 @@ const SalaryForm = () => {
 
     if (isInvalid) {
       setFormError("Please fill in all the fields correctly");
-      return;
-    }
-
-    // Check if any subgrade has already been submitted
-    const isSubgradeSubmitted = formData.some((data) => data.isSubmitted);
-
-    if (isSubgradeSubmitted) {
-      setFormError("Subgrade already submitted");
       return;
     }
 
@@ -120,7 +115,7 @@ const SalaryForm = () => {
   };
 
   // Function to handle form field changes
-  const handleChange = (field, value, rowIndex) => {
+  const handleChange = (field: any, value: any, rowIndex: any) => {
     setFormData((prevData) =>
       prevData.map((data, index) =>
         index === rowIndex ? { ...data, [field]: value } : data
@@ -143,7 +138,7 @@ const SalaryForm = () => {
   };
 
   // Function to remove a row from the form
-  const handleRemoveRow = (index) => {
+  const handleRemoveRow = (index: any) => {
     setFormData((prevData) => prevData.filter((_, i) => i !== index));
   };
 
@@ -154,11 +149,39 @@ const SalaryForm = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Subgrade</TableCell>
-                <TableCell>Monthly Base Salary</TableCell>
-                <TableCell>Annual Fixed Bonus</TableCell>
-                <TableCell>Annual Variable Bonus</TableCell>
-                <TableCell>Name of Agency</TableCell>
+                <TableCell>
+                  <Tooltip title="MX-equivalent" arrow>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      Subgrade
+                      <InfoIcon style={{ marginLeft: 4 }} fontSize="small" />
+                    </div>
+                  </Tooltip>
+                </TableCell>
+                <TableCell>
+                  <Tooltip title="Theoretical Median" arrow>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      Monthly Base Salary
+                      <InfoIcon style={{ marginLeft: 4 }} fontSize="small" />
+                    </div>
+                  </Tooltip>
+                </TableCell>
+                <TableCell>
+                  <Tooltip title="Theoretical Median" arrow>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      Annual Fixed Bonus
+                      <InfoIcon style={{ marginLeft: 4 }} fontSize="small" />
+                    </div>
+                  </Tooltip>
+                </TableCell>
+                <TableCell>
+                  <Tooltip title="Theoretical Median for C Performance" arrow>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      Annual Variable Bonus
+                      <InfoIcon style={{ marginLeft: 4 }} fontSize="small" />
+                    </div>
+                  </Tooltip>
+                </TableCell>
+                <TableCell>Name of Agency </TableCell>
                 <TableCell>Add/Remove</TableCell>
               </TableRow>
             </TableHead>
@@ -323,3 +346,5 @@ const SalaryForm = () => {
 };
 
 export default SalaryForm;
+
+

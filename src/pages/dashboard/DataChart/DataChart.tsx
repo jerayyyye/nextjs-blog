@@ -9,7 +9,6 @@ import {
   Legend,
   registerables,
 } from "chart.js";
-import { subgrades } from "@/helper/Util";
 
 interface DataItem {
   agency: string;
@@ -19,6 +18,15 @@ interface DataItem {
 interface DataChartProps {
   data: DataItem[];
 }
+
+const subgrades = [
+  "MX 13 equiv",
+  "MX 12 equiv",
+  "MX 11 equiv",
+  "MX 10 equiv",
+  "MX 9 equiv",
+  "MX 8 equiv",
+];
 
 const DataChart: React.FC<DataChartProps> = ({ data }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
@@ -36,9 +44,9 @@ const DataChart: React.FC<DataChartProps> = ({ data }) => {
         };
       });
 
-      const agencies = [
-        ...new Set(anonymizedAgencies.map((item) => item.agency)),
-      ];
+      const agencies = Array.from(
+        new Set(anonymizedAgencies.map((item) => item.agency))
+      );
 
       const getRandomColor = () => {
         const letters = "0123456789ABCDEF";
@@ -87,7 +95,7 @@ const DataChart: React.FC<DataChartProps> = ({ data }) => {
       const chartOptions = {
         scales: {
           x: {
-            type: "category",
+            type: 'category' as const,
             labels: subgrades,
           },
           y: {
